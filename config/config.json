@@ -1,0 +1,9 @@
+{
+    "application": {
+        "serviceName": "Advanced Topics Project - Stock Microservice",
+        "shortServiceName": "atp-stock-ms",
+        "port": "$APP_PORT",
+        "logsPath": "$APP_LOGS_PATH",
+        "stackVisibleError": "$STACK_VISIBLE_ERROR"
+    }
+}

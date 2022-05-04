@@ -1,0 +1,189 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Advanced Topics Project - Stock Microservice",
+        "version": "1.0.0",
+        "description": "Stock API"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api",
+            "description": "Local"
+        }
+    ],
+    "paths": {
+        "/stocks ": {
+            "post": {
+                "tags": ["Stock"],
+                "summary": "Stock registration",
+                "operationId": "stockCreateOrUpdate",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "productId": {
+                                        "type": "string",
+                                        "format": "uuid"
+                                    },
+                                    "amount": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "required": ["productId", "amount"]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "productId": {
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "amount": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": ["productId", "amount", "createdAt", "updatedAt"]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer",
+                                            "example": 400
+                                        },
+                                        "details": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            },
+                                            "example": []
+                                        }
+                                    },
+                                    "required": ["message", "statusCode"]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stocks": {
+            "get": {
+                "tags": ["Stock"],
+                "summary": "Stock search",
+                "operationId": "stockFindOne",
+                "parameters": [
+                    {
+                        "name": "productId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "amount",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "productId": {
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "amount": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    },
+                                    "required": ["productId", "amount", "createdAt", "updatedAt"]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed validation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Bad Request"
+                                        },
+                                        "statusCode": {
+                                            "type": "integer",
+                                            "example": 400
+                                        },
+                                        "details": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            },
+                                            "example": []
+                                        }
+                                    },
+                                    "required": ["message", "statusCode"]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

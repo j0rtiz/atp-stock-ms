@@ -26,7 +26,7 @@ module.exports = ({ fakeDatabase, exception }) => ({
         try {
             const product = fakeDatabase.stocks.find((product) => product.productId === data.productId);
 
-            return { product, hasAvailability: product?.amount >= data?.amount };
+            return { product, hasAvailability: product?.amount > 0 && product?.amount >= data?.amount };
         } catch (error) {
             throw exception.database(error);
         }
